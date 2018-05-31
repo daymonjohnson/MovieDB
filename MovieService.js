@@ -30,6 +30,27 @@
             });
         };
 
+        const searchGenres = function (genre_id) {
+            let url = `https://api.themoviedb.org/3/genre/${genre_id}/movies?api_key=0eccf208eb38a982a3c9f88b488a6f19&language=en-US&include_adult=false&sort_by=created_at.asc`;
+            console.log(url);
+            return $http.get(url).then(function (response) {
+                console.log(response.data.results);
+                //console.log(response.data.results[0]);
+                setData(response.data.results);
+            });
+        };
+
+        const searchReleaseDate = function (date) {
+            let url = `http://api.themoviedb.org/3/discover/movie?api_key=${APIKey}&sort_by=vote_average.desc&release_date.gte=${date}`;
+            console.log(url);
+            return $http.get(url).then(function (response) {
+                console.log(response.data.results);
+                //console.log(response.data.results[0]);
+                setData(response.data.results);
+            });
+        };
+
+
         const getMovieDetail = function (movieId) {
             let url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${APIKey}`;
             return $http.get(url).then(function (response) {
@@ -50,7 +71,9 @@
         return {
             getData,
             setData,
-            searchMovies
+            searchMovies,
+            searchGenres,
+            searchReleaseDate
         };
     }
     angular

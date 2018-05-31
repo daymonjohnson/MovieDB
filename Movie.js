@@ -10,15 +10,14 @@
         },
         template: `<p>Search here to filter</p>
             <input ng-model="searchText">
-            <input ng-model="searchDate">
-            <input ng-model="searchGenre">
             <div ng-repeat="m in $ctrl.movies | filter: searchText">
             
             <h2>{{m.title}}</h2>
+            <img src="http://image.tmdb.org/t/p/w185{{m.poster_path}}" alt"">
             <p>{{m.overview}}</p>
             <p>Genre:{{m.genre_ids}}</p>
-            <p>Length:{{m.release_date}}</p>
-            
+            <p>Release date:{{m.release_date}}</p>
+            <button>ADD</button>
             </div>      
             `
     };
